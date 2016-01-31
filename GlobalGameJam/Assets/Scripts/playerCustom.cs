@@ -15,6 +15,8 @@ public class playerCustom : MonoBehaviour {
 	public GameObject standObj;
 	Material colorObj;
 
+	public playerCharStats displayStats;
+
 	public int atk;
 	public int def;
 	public int mag;
@@ -61,12 +63,10 @@ public class playerCustom : MonoBehaviour {
 			if (Input.GetKeyDown (KeyCode.Space) && isValidSelect() && canTakeTurn() && playerNum ==1) {
 				submit ();
 				Debug.Log ("Submitted");
-				Debug.Log ("Is Turn: " + turnEnable);
 			}
 			if (Input.GetKeyDown (KeyCode.Return) && isValidSelect() && canTakeTurn() && playerNum ==2) {
 				submit ();
 				Debug.Log ("Submitted");
-				Debug.Log ("Is Turn: " + turnEnable);
 			}
 		}
 	}
@@ -79,6 +79,7 @@ public class playerCustom : MonoBehaviour {
 		Destroy (modelObj);
 		modelObj = Instantiate (models [modelNum], modelPos.position, modelPos.rotation) as GameObject;
 		modelObj.GetComponent<Renderer> ().material = colorObj;
+		changeStats ();
 	}
 
 	void modelDown() {
@@ -89,6 +90,7 @@ public class playerCustom : MonoBehaviour {
 		Destroy (modelObj);
 		modelObj = Instantiate (models [modelNum], modelPos.position, modelPos.rotation) as GameObject;
 		modelObj.GetComponent<Renderer> ().material = colorObj;
+		changeStats ();
 	}
 
 	void standUp() {
@@ -99,6 +101,7 @@ public class playerCustom : MonoBehaviour {
 		Destroy (standObj);
 		standObj = Instantiate (stands [standNum], standPos.position, standPos.rotation) as GameObject;
 		standObj.GetComponent<Renderer> ().material = colorObj;
+		changeStats ();
 	}
 
 	void standDown() {
@@ -109,6 +112,7 @@ public class playerCustom : MonoBehaviour {
 		Destroy (standObj);
 		standObj = Instantiate (stands [standNum], standPos.position, standPos.rotation) as GameObject;
 		standObj.GetComponent<Renderer> ().material = colorObj;
+		changeStats ();
 	}
 
 	void colorUp() {
@@ -119,22 +123,23 @@ public class playerCustom : MonoBehaviour {
 		colorObj = colors [colorNum];
 		modelObj.GetComponent<Renderer> ().material = colorObj;
 		standObj.GetComponent<Renderer> ().material = colorObj;
+		changeStats ();
 	}
 
 	void colorDown() {
-			colorNum--;
-			if (colorNum <= 0) {
-				colorNum = colors.Length - 1;
-			}
-			colorObj = colors [colorNum];
-			modelObj.GetComponent<Renderer> ().material = colorObj;
-			standObj.GetComponent<Renderer> ().material = colorObj;
+		colorNum--;
+		if (colorNum <= 0) {
+			colorNum = colors.Length - 1;
+		}
+		colorObj = colors [colorNum];
+		modelObj.GetComponent<Renderer> ().material = colorObj;
+		standObj.GetComponent<Renderer> ().material = colorObj;
+		changeStats ();
 	}
 
 	void submit () {
-			if(turnEnable) charReady = true;
-			turnEnd = Time.time;
-		
+		if(turnEnable) charReady = true;
+		turnEnd = Time.time;
 	}
 
 	public bool isValidSelect() {
@@ -149,5 +154,86 @@ public class playerCustom : MonoBehaviour {
 
 	public bool canTakeTurn(){
 		return ((Time.time - turnEnd) > timeToNextTurn);
+	}
+
+	void changeStats() {
+		int tempAtk = 1;
+		int tempDef = 1;
+		int tempMag = 1;
+		int tempRng = 2;
+		int tempMv = 1;
+
+		if (modelNum == 1) {
+			tempAtk++;
+		}
+		if (modelNum == 2) {
+			tempDef++;
+		}
+		if (modelNum == 3) {
+			tempMag++;
+		}
+
+
+		if (standNum == 1) {
+			tempAtk++;
+			tempMag--;
+		}
+		if (standNum == 2) {
+			tempMag++;
+			tempRng--;
+		}
+		if (standNum == 3) {
+			tempRng++;
+			tempDef--;
+		}
+		if (standNum == 4) {
+			tempDef++;
+			tempAtk--;
+		}
+
+
+		if (colorNum == 1) {
+			tempAtk++;
+			tempDef--;
+			tempMv--;
+		}
+		if (colorNum == 2) {
+			tempDef++;
+			tempMag--;
+			tempMv++;
+		}
+		if (colorNum == 3) {
+			tempMag++;
+			tempRng--;
+			tempMv--;
+		}
+		if (colorNum == 4) {
+			tempRng++;
+			tempAtk--;
+			tempMv++;
+		}
+		if (colorNum == 5) {
+			tempAtk++;
+			tempMag--;
+			tempMv++;
+		}
+		if (colorNum == 6) {
+			tempRng++;
+			tempDef--;
+			tempMv--;
+		}
+
+		atk = tempAtk;
+		def = tempDef;
+		mag = tempMag;
+		rng = tempRng;
+		mv = tempMv;
+
+		displayStats.changeDisplay ();
+	}
+
+	void OnDisable() {
+		Destroy (modelObj);
+		Destroy (standObj);
 	}
 }

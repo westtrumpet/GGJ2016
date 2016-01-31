@@ -22,4 +22,17 @@ public class ModelObj : MonoBehaviour {
 	public ModelObj() {
 	}
 
+	public void moveModel(Vector3 position){
+		modelObj.transform.position = position;
+	}
+
+	public void moveStand(Vector3 position){
+		standObj.transform.position = position;
+	}
+
+	public void scaleChar(float scale) {
+		modelObj.transform.localScale = new Vector3 (scale, scale, scale);
+		standObj.transform.localScale = new Vector3 (scale, scale, scale);
+	}
+
 }

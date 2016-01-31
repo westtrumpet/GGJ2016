@@ -1,12 +1,13 @@
 ﻿<Properties StartupItem="Assembly-CSharp.csproj">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Unity.Instance.Unity Editor" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\playerCustom.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\playerCharStats.cs">
     <Files>
-      <File FileName="Assets\Scripts\playerCustom.cs" Line="66" Column="97" />
-      <File FileName="Assets\Scripts\GameManager.cs" Line="105" Column="27" />
-      <File FileName="Assets\Scripts\Tile.cs" Line="18" Column="9" />
-      <File FileName="Assets\Scripts\PlayerObj.cs" Line="59" Column="34" />
-      <File FileName="Assets\Scripts\ModelObj.cs" Line="22" Column="21" />
+      <File FileName="Assets\Scripts\GameManager.cs" Line="165" Column="11" />
+      <File FileName="Assets\Scripts\Tile.cs" Line="21" Column="5" />
+      <File FileName="Assets\Scripts\PlayerObj.cs" Line="8" Column="28" />
+      <File FileName="Assets\Scripts\ModelObj.cs" Line="35" Column="68" />
+      <File FileName="Assets\Scripts\playerCustom.cs" Line="70" Column="1" />
+      <File FileName="Assets\Scripts\playerCharStats.cs" Line="66" Column="33" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

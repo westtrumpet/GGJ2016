@@ -5,6 +5,8 @@ public class PlayerObj{
 	
 	public ModelObj MeshesModelObj;
 
+	public string playerOwner;
+
 	public int health;
 	public int currentHealth;
 	public int attack;
@@ -62,5 +64,19 @@ public class PlayerObj{
 	public void addStandAndModel(GameObject stand, GameObject model, Transform newStandPosition, Transform newModelPosition){
 		MeshesModelObj.addStand (stand, newStandPosition);
 		MeshesModelObj.addModel (model, newModelPosition);
+	}
+
+	public void moveModel(Vector3 position) {
+		MeshesModelObj.moveStand (position);
+		MeshesModelObj.moveModel (position + (Vector3.up * 3));
+	}
+
+	public void moveChar(Vector2 position) {
+		pos = position;
+		moveModel (new Vector3 (position.y * 4 - 18, 1.5f, position.x * (-4) + 12));
+	}
+
+	public void scaleChar(float scale){
+		MeshesModelObj.scaleChar (scale);
 	}
 }
